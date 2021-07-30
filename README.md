@@ -1,24 +1,48 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Installation
 
-Things you may want to cover:
+1. rake db:create
+2. rake db:prepare
+3. rake db:seed
 
-* Ruby version
+## Run
 
-* System dependencies
+1. rails s
 
-* Configuration
+## Tests
 
-* Database creation
+1. bundle exec rspec
 
-* Database initialization
+## Endpoints available
 
-* How to run the test suite
+1. VehicleModel
+  1. CREATE:
+    ```
+    curl --request POST \
+    --url http://localhost:3000/api/v1/vehicle_models \
+    --header 'content-type: application/json' \
+    --data '{
+	    "name": "Ibiza",
+      "brand": "Seat"
+    }'
+    ```
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+2. Vehicles
+  1. CREATE:
+    ```
+    curl --request POST \
+    --url http://localhost:3000/api/v1/vehicles \
+    --header 'content-type: application/json' \
+    --data '{
+      "model": "Ibiza",
+      "year": "2020",
+	    "mileage": 1000,
+      "price": 100000
+    }'
+    ```
+  2. INDEX:
+    ```
+    curl --request GET \
+    --url 'http://localhost:3000/api/v1/vehicles?brand_name=Seat'
+    ```
